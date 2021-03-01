@@ -1,5 +1,6 @@
 package hw_test;
 
+
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -10,6 +11,7 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
+import static com.codeborne.selenide.Condition.visible;
 
 public class SelenideStepTest {
 
@@ -26,9 +28,7 @@ public class SelenideStepTest {
             open(BASE_URL);
         });
         step("Ищем репозиторий " + REPOSITORY, () -> {
-            $(".header-search-input").click();
-            $(".header-search-input").sendKeys(REPOSITORY);
-            $(".header-search-input").submit();
+            $(".header-search-input").setValue(REPOSITORY).submit();
         });
         step("Переходим в репозиторий " + REPOSITORY, () -> {
             $(By.linkText(REPOSITORY)).click();
@@ -38,7 +38,7 @@ public class SelenideStepTest {
             $(withText(ISSUES_LIST)).click();
         });
         step("Проверяем, что Issue c номером " + ISSUE_NUMBER + " существует", () -> {
-            $(withText(ISSUE_NUMBER)).should(Condition.exist);
+            $(withText(ISSUE_NUMBER)).should(visible);
         });
     }
 }

@@ -21,9 +21,7 @@ public class BaseSteps {
 
     @Step("Открываем главную страницу")
     public void searchForRepo(final String repository) {
-        $(".header-search-input").click();
-        $(".header-search-input").sendKeys(repository);
-        $(".header-search-input").submit();
+        $(".header-search-input").setValue(repository).submit();
     }
 
     @Step("Переходим в репозиторий ${repository}")
