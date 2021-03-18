@@ -2,12 +2,12 @@ package hw5_main;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import com.codeborne.selenide.Condition;
 
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-import com.codeborne.selenide.Condition;
 
 
 public class BaseSteps {
@@ -24,7 +24,7 @@ public class BaseSteps {
         $(".header-search-input").setValue(repository).submit();
     }
 
-    @Step("Переходим в репозиторий ${repository}")
+    @Step("Переходим в репозиторий {repository}")
     public void goToRepositoryFromSearch(final String repository) {
         $(By.linkText(repository)).click();
     }
@@ -34,7 +34,7 @@ public class BaseSteps {
         $(withText("Issues")).click();
     }
 
-    @Step("Проверяем что Issue с номером ${number} существует")
+    @Step("Проверяем что Issue с номером {number} существует")
     public void shouldBeIssueWithNumber(final String number) {
         $(withText(number)).should(Condition.exist);
     }

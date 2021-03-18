@@ -1,5 +1,6 @@
 package hw_test;
 
+
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -10,7 +11,7 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static io.qameta.allure.Allure.step;
+
 
 public class LambdaStepTest {
     private static final String BASE_URL = "https://github.com";
@@ -23,9 +24,7 @@ public class LambdaStepTest {
     @DisplayName("Поиск Issues по номеру в репозитории")
     public void testIssueSearch() {
         open(BASE_URL);
-        $(".header-search-input").click();
-        $(".header-search-input").sendKeys(REPOSITORY);
-        $(".header-search-input").submit();
+        $(".header-search-input").setValue(REPOSITORY).submit();
         $(By.linkText(REPOSITORY)).click();
         $(withText(ISSUES_LIST)).click();
         $(withText(ISSUE_NUMBER)).should(Condition.exist);
