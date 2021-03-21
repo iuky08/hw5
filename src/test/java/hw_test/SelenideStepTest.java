@@ -6,11 +6,13 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import com.codeborne.selenide.Condition;
 
+
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
+
 
 public class SelenideStepTest {
 
@@ -37,7 +39,7 @@ public class SelenideStepTest {
             $(withText(ISSUES_LIST)).click();
         });
         step("Проверяем, что Issue c номером " + ISSUE_NUMBER + " существует", () -> {
-            $(withText(ISSUE_NUMBER)).should(Condition.exist);
+            $(withText(ISSUE_NUMBER)).should(visible);
         });
     }
 }
